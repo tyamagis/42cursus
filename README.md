@@ -1,23 +1,32 @@
 # 42cursus
 Not a innovative creation, but a reinvention of the wheel for learning.
-<<<<<<< HEAD
+
 =======
 
 ## Lv 00.
-### 00.libft
+#### 00.libft
 very first own library
 
 ## Lv 01.
-### 00. netwhat
+#### 00. netwhat
   introduction to network problematics
-### 01. gnl
+#### 01. gnl
   Reading a line on a fd
-### 02. printf
-  You will recode printf
+#### 02. printf
+  recode printf
+#### 03. born2beroot
+  setting VM
+  
+## Lv 02.
+#### 00. push_swap
+  sort on two stacks
+#### 01. minitalk
+  communication via signal
+#### 02. fract-ol
+  draw fractals
   
 ## ft_mini_ls
   ls -1tr
 
 ## common_test
-  test code to confirm how it(some funcs) works
->>>>>>> origin/master
+  test code to confirm how it works
