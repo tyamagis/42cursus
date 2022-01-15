@@ -1,0 +1,53 @@
+---- ARGS ----
+argc = 6 : [0x7fffd71839c8]
+argv[0][0] = .(46) : [0x7fffd7183ce7]
+argv[0][1] = /(47) : [0x7fffd7183ce8]
+argv[0][2] = a(97) : [0x7fffd7183ce9]
+argv[0][3] = .(46) : [0x7fffd7183cea]
+argv[0][4] = o(111) : [0x7fffd7183ceb]
+argv[0][5] = u(117) : [0x7fffd7183cec]
+argv[0][6] = t(116) : [0x7fffd7183ced]
+argv[1][0] = t(116) : [0x7fffd7183cef]
+argv[1][1] = h(104) : [0x7fffd7183cf0]
+argv[1][2] = i(105) : [0x7fffd7183cf1]
+argv[1][3] = s(115) : [0x7fffd7183cf2]
+argv[2][0] = i(105) : [0x7fffd7183cf4]
+argv[2][1] = s(115) : [0x7fffd7183cf5]
+argv[3][0] = t(116) : [0x7fffd7183cf7]
+argv[3][1] = h(104) : [0x7fffd7183cf8]
+argv[3][2] = e(101) : [0x7fffd7183cf9]
+argv[4][0] = t(116) : [0x7fffd7183cfb]
+argv[4][1] = e(101) : [0x7fffd7183cfc]
+argv[4][2] = s(115) : [0x7fffd7183cfd]
+argv[4][3] = t(116) : [0x7fffd7183cfe]
+argv[5][0] = c(99) : [0x7fffd7183d00]
+argv[5][1] = a(97) : [0x7fffd7183d01]
+argv[5][2] = s(115) : [0x7fffd7183d02]
+argv[5][3] = e(101) : [0x7fffd7183d03]
+argv[5][4] = .(46) : [0x7fffd7183d04]
+---- VAR ----
+[name]		[value]		[address]
+g1		     255	[  0x404040]
+g2		       0	[  0x404174]
+g3		     127	[  0x404044]
+g4		       0	[  0x404170]
+l_st_int	       0	[  0x4040e0]
+li_st_int	      63	[  0x404048]
+l_int		    1023	[0x7fffd71839bc]
+l_char		      63	[0x7fffd71839bb]
+i		       6	[0x7fffd7183894]
+j		       5	[0x7fffd7183890]
+---- ARRAY ----
+st_a1[0]	       0	  0x4040f0
+st_a2[0]	     116	  0x404050
+a1[0]		       0	0x7fffd7183930
+a2[0]		     116	0x7fffd71838b0
+*str1		     116	  0x402032
+*str_m		       0	  0xba02a0
+---- FUNCTIONS ----
+main		 4198848	  0x4011c0
+printf		 4198448	  0x401030
+malloc		 4198480	  0x401050
+---- myFunc ----
+int i		0	0x7fffd718380c
+myFunc	4198736	0x401150

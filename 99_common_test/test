@@ -1,0 +1,27 @@
+
+output argc, argv
+-- argc ------
+argc  = 4  (%d) 
+			&argc = 0x7ffee2b93ba8  (%p) 
+			&argc = -491177048  (%d) 
+
+-- argv ------
+argv  = -491177000  (%d) 
+				argv  = 0x7ffee2b93bd8  (%p) 
+				&argv = -491177056  (%d) 
+
+-- argv ------
+argv  = -491177000  (%d) 
+				argv  = 0x7ffee2b93bd8  (%p) 
+				&argv = -491177056  (%d) 
+
+-- argv ------
+argv  = -491177000  (%d) 
+				argv  = 0x7ffee2b93bd8  (%p) 
+				&argv = -491177056  (%d) 
+
+-- argv ------
+argv  = -491177000  (%d) 
+				argv  = 0x7ffee2b93bd8  (%p) 
+				&argv = -491177056  (%d) 
+

@@ -1,0 +1,15 @@
+
+output argc, argv
+
+-- argc ------
+argc  =                1  (%d) 
+&argc =   0x7ffee7da8a58  (%p) 
+&argc =       -405108136  (%d) 
+
+-- argv ------
+argv[0] = "./a.out" (%s)
+
+  **argv   =       -405108088  (%d) 
+  **argv   =         e7da8a88  (%p) 
+&(**argv)  =       -405108144  (%d) 
+
