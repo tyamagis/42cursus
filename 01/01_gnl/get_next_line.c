@@ -6,12 +6,11 @@
 /*   By: tyamagis </var/mail/tyamagis>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:34:12 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/01/09 17:26:11 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/01/16 22:42:00 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 char	*gnl_trim_store(char **str, char *nl, char **line)
 {
@@ -78,6 +77,8 @@ char	*read_buf(int fd, char **str, char **nl, char *buf)
 			break ;
 		buf[read_size] = '\0';
 		*str = gnl_strcat(*str, buf, read_size);
+		if (*str == NULL)
+			return (free_store(str));
 		if (find_nl(*str, nl))
 			return (gnl_split(str, *nl));
 	}
