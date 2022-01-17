@@ -6,7 +6,7 @@
 /*   By: tyamagis </var/mail/tyamagis>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:45:29 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/01/09 17:32:01 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/01/18 05:30:29 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*gnl_strcat(char *str, char *buf, size_t buf_len)
 		i = gnl_strlen(str);
 	ret = (char *)malloc(sizeof(char) * (i + buf_len + 1));
 	if (!ret)
-		return (NULL);
+		return (free_store(&str));
 	i = 0;
 	if (str)
 	{
