@@ -6,7 +6,7 @@
 /*   By: tyamagis </var/mail/tyamagis>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 17:34:12 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/01/18 09:13:38 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/01/18 11:50:40 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ char	*gnl_split(char **str, char *nl)
 		return (free_store(str));
 	*str = gnl_trim_store(str, nl, &line);
 	free(old_str);
-	if (*str == NULL)
-		return (line);
 	return (line);
 }
 
