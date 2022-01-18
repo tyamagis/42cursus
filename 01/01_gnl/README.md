@@ -5,7 +5,6 @@ read from fd, and return each line per gnl() runs.
 ## gnl_test.sh
 
 when you run this shell script, 
-
 First, compile will start with BUFFER_SIZE = 0,and will return NULL.
 After that, compile with BUFFER_SIZE = 1, 42, 1024 will test by 14 txt files.
 
