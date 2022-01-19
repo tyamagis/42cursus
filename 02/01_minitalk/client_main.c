@@ -6,14 +6,13 @@
 /*   By: tyamagis </var/mail/tyamagis>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 20:29:18 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/01/15 01:13:32 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/01/19 18:47:21 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <signal.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 void	err_exit(void)
 {

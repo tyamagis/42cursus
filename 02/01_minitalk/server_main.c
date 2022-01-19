@@ -6,13 +6,12 @@
 /*   By: tyamagis </var/mail/tyamagis>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 20:44:50 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/01/16 00:52:26 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/01/19 17:59:53 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <signal.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 void	putpid(void)
