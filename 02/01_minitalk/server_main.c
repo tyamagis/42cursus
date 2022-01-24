@@ -6,7 +6,7 @@
 /*   By: tyamagis </var/mail/tyamagis>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 20:44:50 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/01/24 17:47:01 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/01/24 19:36:46 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,7 @@ int	main(void)
 	putpid();
 	signal(SIGUSR1, prcs);
 	signal(SIGUSR2, prcs);
+	while (1)
+		;
 	return (0);
 }
