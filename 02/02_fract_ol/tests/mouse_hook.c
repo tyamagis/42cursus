@@ -1,5 +1,5 @@
-#include "./minilibx-linux/mlx.h"
-#include "./minilibx-linux/mlx_int.h"
+#include "mlx.h"
+#include "mlx_int.h"
 #include <stdio.h>
 
 typedef struct s_win
@@ -14,8 +14,8 @@ typedef struct s_win
 
 int	func(int btn, int x, int y, t_win *p)
 {
-	mlx_mouse_get_pos(p->mlx, p->win, &p->mx, &p->my);
-	printf("btn : [%d] (%d, %d)\n", btn, p->mx, p->my);
+//	mlx_mouse_get_pos(p->mlx, p->win, &p->mx, &p->my);
+	printf("btn : [%d] (%d, %d)\n", btn, x, y);
 	if (btn == 1) // LEFT CLICK
 		printf("click LEFT\n");
 	else if (btn == 3) // RIGHT CLICK

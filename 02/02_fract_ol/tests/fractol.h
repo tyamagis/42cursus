@@ -1,7 +1,7 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-#include "./minilibx-linux/mlx.h"
+#include "mlx.h"
 
 typedef struct s_win
 {
@@ -12,7 +12,7 @@ typedef struct s_win
 	int		mx;
 	int		my;
 } t_win;
-
+/*
 typedef struct s_img
 {
 	void	*mlx;
@@ -30,5 +30,5 @@ typedef struct s_img
 	int		grd;
 	int		zoom;
 } t_img;
-
+*/
 #endif
