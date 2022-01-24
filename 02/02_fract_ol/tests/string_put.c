@@ -21,8 +21,8 @@ int	main(void)
 		}
 		y += 50;
 	}
-	int	baseline = 10;
-	while (baseline < 100)
+	int	baseline = 18;
+	while (baseline < 500)
 	{
 		mlx_string_put(win.mlx, win.ptr, 50, baseline, 0xffffff, "ZXT\nH,||");
 		baseline += 12;
