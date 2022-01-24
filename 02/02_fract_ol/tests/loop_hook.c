@@ -8,20 +8,19 @@ int	loop(t_win *win)
 {
 	int	x, y;
 	mlx_mouse_get_pos(win->mlx, win->ptr, &x, &y);
-	printf("%d, %d\n", x, y);
+//	printf("%d, %d\n", x, y);
 	return (0);
 }
 
-int	mouse(int btn, int x, int y, int *p)
+int	mouse(int btn, int x, int y, t_win *p)
 {
-	printf("btn %d (%d, %d) p : %d\n", btn, x, y, *p);
+	printf("btn %d (%d, %d)\n", btn, x, y);
 	return (0);
 }
 
-int	kb(int key, int *p)
+int	kb(int key, t_win *p)
 {
-	printf("key %d p : %d\n", key, *p);
-	(*p)++;
+	printf("key %d\n", key);
 	return (0);
 }
 
@@ -32,8 +31,8 @@ int	main(void)
 	win.mlx = mlx_init();
 	win.ptr = mlx_new_window(win.mlx, 500, 500, "loop_hook");
 	mlx_loop_hook(win.mlx, loop, &win);
-//	mlx_mouse_hook(win, mouse, &p);
-//	mlx_key_hook(win, kb, &p);
+	mlx_mouse_hook(win.ptr, mouse, &win);
+	mlx_key_hook(win.ptr, kb, &win);
 	mlx_loop(win.mlx);
 	return (0);
 }
