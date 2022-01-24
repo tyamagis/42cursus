@@ -44,7 +44,6 @@ void	test_strlen()
 	run_strlen("");
 	run_strlen("abcde");
 	run_strlen("how long this string is ???");
-
 }
 
 // memcpy
@@ -89,6 +88,7 @@ void	test_memcpy()
 	}
 
 	init_dst(dst_char, 3);
+	hr();
 	printf("setting : [dst_len < src_len]\n");
 	printf("void *dst = [%s](%p);\n", dst, dst);
 	printf("void *src = [%s](%p)\n\n", src, src);
@@ -99,6 +99,7 @@ void	test_memcpy()
 		init_dst(dst_char, 3);
 		run_memcpy(dst, src, i++);
 	}
+
 
 }
 
