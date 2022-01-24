@@ -1,4 +1,4 @@
-#include "./minilibx-linux/mlx.h"
+#include "mlx.h"
 #include <stdio.h>
 
 typedef struct s_wdw_info
