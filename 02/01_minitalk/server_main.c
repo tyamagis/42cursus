@@ -6,7 +6,7 @@
 /*   By: tyamagis </var/mail/tyamagis>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 20:44:50 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/01/22 22:28:23 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/01/24 17:47:01 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ void	prcs(int signum)
 
 int	main(void)
 {
-	int	i;
 	putpid();
 	signal(SIGUSR1, prcs);
 	signal(SIGUSR2, prcs);
