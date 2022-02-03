@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 09:12:39 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/02/03 10:00:09 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/02/03 14:38:23 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FRACTOL_H
 
 # include <unistd.h>
+# include <stdlib.h>
 # include "mlx.h"
 
 typedef struct s_frctl
@@ -25,12 +26,6 @@ typedef struct s_frctl
 	int		zoom;
 } t_frctl;
 
-typedef struct s_mouse
-{
-	int	x;
-	int	y;
-} t_mouse;
-
 typedef struct s_hsb
 {
 	int	h;
@@ -40,7 +35,8 @@ typedef struct s_hsb
 
 typedef struct s_img
 {
-	void	*img;
+	void	*ptr;
+	int		*data;
 	int		bpp;
 	int		spl;
 	int		e;
@@ -50,11 +46,11 @@ typedef struct s_win
 {
 	void	*mlx;
 	void	*ptr;
-	int		w;
-	int		h;
+	int		size;
+	int		mouse_x;
+	int		mouse_y;
 	t_img	*img;
 	t_frctl	*frctl;
-	t_mouse	*mouse;
 } t_win;
 
 int		draw_mndl();
