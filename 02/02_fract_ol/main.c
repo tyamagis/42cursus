@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 11:09:14 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/02/03 14:40:33 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/02/12 11:34:04 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,19 @@
 
 #include <stdio.h>
 
-int	draw(void){printf("draw()\n");return(0);}
-int	kb_hook(void){printf("kb_hook()\n");return(0);}
-int	ms_hook(void){printf("ms_hook()\n");return(0);}
-
 void	show_usage(void)
 {
-	printf("show_usage()\n");
+	printf(">> Invalid arguments. See below.\n\n");
+	printf("[ Fract-ol ] tyamagis\n\n");
+	printf("run \"./fractol [m / M / j / J / ] [0-2]\"\n");
+	printf("m/M shows Mandelbrot set. j/J shows Julia set.\n\n");
+	printf("---- KEY functions ----\n");
+	printf("[Q, A](hue) [W, S](saturation) [E, D](brightness [R, F](grad)\n");
+	printf("[T, G](1) [Y, H](10) [U, J](100) [I, K](1000) calc limit\n");
+	printf("[C] color mode  [Z] reset\n\n");
+	printf("---- MOUSE functions ----\n");
+	printf("left click : center reset, wheel : zoom in / out\n");
+	printf("HAVE FUN !!\n");
 	exit(0);
 }
 
@@ -29,6 +35,16 @@ int		destroy(t_win *win)
 	mlx_destroy_image(win->mlx, win->img->ptr);
 	mlx_destroy_window(win->mlx, win->ptr);
 	mlx_destroy_display(win->mlx);
+	if (win->frctl->real != NULL)
+		free(win->frctl->real);
+	if (win->frctl->imag != NULL)
+		free(win->frctl->imag);
+	if (win->frctl->pow_r != NULL)
+		free(win->frctl->pow_r);
+	if (win->frctl->pow_i != NULL)
+		free(win->frctl->pow_i);
+	if (win->pxl != NULL)
+		free(win->pxl);
 	exit(0);
 	return (0);
 }
@@ -41,40 +57,49 @@ void	check_args(int ac, char **av, t_win *win)
 	{
 		c = av[1][0];
 		if (c == 'm' || c == 'M')
-			printf("m\n"); // mandel
+			win->frctl->type = 0;
 		else if (c == 'j' || c == 'J')
-			printf("j\n"); // julia
-		else if (c == 0 /* */ || c == 1 /* */)
-			printf("3\n"); // 3rd FRACTAL
+		{
+			win->frctl->type = 1;
+			win->frctl->init_a = -0.1243;
+			win->frctl->init_b = 0.7494;
+		}
+		else if (c == 'o' || c == 'O')
+			win->frctl->type = 2;
 		else
 			show_usage();
 	}
+	else if (ac == 3 && av[1][0] == 'j')
+		set_julia(ac, av, win->frctl);
 	else
 		show_usage();
+	return ;
 }
 
-int		init(t_win *win)
+void	set_julia(int ac, char **av, t_frctl *f)
 {
-	t_img	*img;
-	t_frctl	*frctl;
-
-	win->size = 500;
-	win->mlx = mlx_init();
-	// if (mlx_init() fails)
-	// exit;
-	win->ptr = mlx_new_window(win->mlx, win->size, win->size, "fract-ol");
-	// if (mlx_new_window() fails)
-	// exit;
-	img = win->img;
-	img->ptr = mlx_new_image(win->mlx, win->size, win->size);
-	img->data = (int *)mlx_get_data_addr(img->ptr, &img->bpp, &img->spl, &img->e);
-	frctl = win->frctl;
-	frctl->min_x = -2;
-	frctl->min_y = -2;
-	frctl->range = 4;
-	frctl->lim = 30;
-	frctl->zoom = 0;
-	return (0);
+	if (ac == 3 && av[2][1] == '\0')
+	{
+		f->type = 1;
+		if (av[2][0] == '0')
+		{
+			f->init_a = 0.32;
+			f->init_b = 0.043;
+		}
+		else if (av[2][0] == '1')
+		{
+			f->init_a = -0.1562;
+			f->init_b = 1.03225;
+		}
+		else if (av[2][0] == '2')
+		{
+			f->init_a = -0.76;
+			f->init_b = 0.13;
+		}
+	}
+	else
+		show_usage();
+	return ;
 }
 
 int	main(int ac, char **av)
@@ -82,18 +107,17 @@ int	main(int ac, char **av)
 	t_win	win;
 	t_img	t_i;
 	t_frctl	t_f;
+	t_color	t_c;
 
-	check_args(ac, av, &win);
-	win.img = &t_i;
 	win.frctl = &t_f;
+	win.img = &t_i;
+	win.col = &t_c;
+	check_args(ac, av, &win);
 	init(&win);
 	mlx_key_hook(win.ptr, kb_hook, &win);
 	mlx_mouse_hook(win.ptr, ms_hook, &win);
 	mlx_hook(win.ptr, 12, 1L << 15, draw, &win);
 	mlx_hook(win.ptr, 17, 0L, destroy, &win);
-	/*
-	draw();
-	*/
 	mlx_loop(win.mlx);
 	return (0);
 }
