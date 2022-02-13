@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:40:53 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/02/11 17:38:23 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/02/12 12:28:29 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,6 @@ void	kb_hook_move(int k, t_win *w)
 		w->frctl->min_x += w->frctl->range / 10;
 	else if (k == 65364)
 		w->frctl->min_y += w->frctl->range / 10;
-	else if (k == 'x')
-	{
-		if (w->frctl->type != 2)
-			w->frctl->type++;
-		else
-			w->frctl->type = 0;
-	}
 	draw(w);
 	return ;
 }
@@ -104,7 +97,7 @@ int	kb_hook(int k, t_win *w)
 {
 	if (k == 65307)
 		destroy(w);
-	else if ((k >= 65361 && k <= 65364) || k == 'x')
+	else if ((k >= 65361 && k <= 65364))
 		kb_hook_move(k, w);
 	else if ((k >= 'g' && k <= 'k') || k == 't' ||  k == 'y' || k == 'u' || k == 'z')
 		kb_hook_lim(k, w);
@@ -115,6 +108,5 @@ int	kb_hook(int k, t_win *w)
 	}
 	else if (k == 'c' || k == 'r' || k == 'f')
 		kb_hook_util(k, w);
-//	printf("z : %d, l : %d, min_x, y : (%.20Lf, %.20Lf), range : %.60Lf \n", w->frctl->zoom, w->frctl->lim, w->frctl->min_x, w->frctl->min_y, w->frctl->range);
 	return (0);
 }

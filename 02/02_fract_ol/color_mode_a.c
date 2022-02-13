@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:41:26 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/02/11 17:17:20 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/02/12 12:29:39 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	fullrange_hue(t_win *win, int x, int y)
 	float	tmp;
 	int		dvg;
 	int		*tgt;
-	int		s;
-	int		b;
 
 	dvg = win->pxl[x + y * win->size].dvg;
 	tgt = &win->img->data[x + y * win->size];
@@ -32,7 +30,6 @@ void	fullrange_hue(t_win *win, int x, int y)
 
 void	narrow_band_hue(t_win *w, int x, int y)
 {
-	int		tmp;
 	int		s;
 	int		b;
 	int		h;

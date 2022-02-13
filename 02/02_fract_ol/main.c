@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 11:09:14 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/02/12 11:34:04 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/02/13 10:55:46 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 void	show_usage(void)
 {
 	printf(">> Invalid arguments. See below.\n\n");
-	printf("[ Fract-ol ] tyamagis\n\n");
-	printf("run \"./fractol [m / M / j / J / ] [0-2]\"\n");
-	printf("m/M shows Mandelbrot set. j/J shows Julia set.\n\n");
-	printf("---- KEY functions ----\n");
-	printf("[Q, A](hue) [W, S](saturation) [E, D](brightness [R, F](grad)\n");
-	printf("[T, G](1) [Y, H](10) [U, J](100) [I, K](1000) calc limit\n");
-	printf("[C] color mode  [Z] reset\n\n");
-	printf("---- MOUSE functions ----\n");
-	printf("left click : center reset, wheel : zoom in / out\n");
-	printf("HAVE FUN !!\n");
+	printf("\t[ Fract-ol ] tyamagis\n\n");
+	printf("\trun \"./fractol [m / M / j / J / o / O] [0-2]\"\n");
+	printf("\tm/M shows Mandelbrot set. j/J shows Julia set.\n\n");
+	printf("\t---- KEY functions ----\n");
+	printf("\t[Q, A](hue) [W, S](saturation) [E, D](brightness [R, F](grad)\n");
+	printf("\t[T, G](1) [Y, H](10) [U, J](100) [I, K](1000) calc limit\n");
+	printf("\t[C] color mode  [Z] reset\n\n");
+	printf("\t---- MOUSE functions ----\n");
+	printf("\tleft click : center reset, wheel : zoom in / out\n");
+	printf("\tHAVE FUN !!\n");
 	exit(0);
 }
 
