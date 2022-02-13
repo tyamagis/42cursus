@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:40:53 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/02/12 12:28:29 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/02/13 19:44:12 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,11 @@ int	kb_hook(int k, t_win *w)
 		destroy(w);
 	else if ((k >= 65361 && k <= 65364))
 		kb_hook_move(k, w);
-	else if ((k >= 'g' && k <= 'k') || k == 't' ||  k == 'y' || k == 'u' || k == 'z')
+	else if ((k >= 'g' && k <= 'k') || k == 't' \
+			|| k == 'y' || k == 'u' || k == 'z')
 		kb_hook_lim(k, w);
-	else if (k == 'q' || k == 'a' || k == 'w' || k == 's' || k == 'e' || k == 'd')
+	else if (k == 'q' || k == 'a' || k == 'w' \
+			|| k == 's' || k == 'e' || k == 'd')
 	{
 		kb_hook_color(k, w);
 		set_color(w);

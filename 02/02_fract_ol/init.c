@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:48:05 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/02/12 10:45:06 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/02/13 19:58:35 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,24 @@ void	init_frctl(t_win *w, t_frctl *f)
 	return ;
 }
 
-int		init(t_win *win)
+int	init(t_win *win)
 {
 	t_img	*i;
 
 	win->size = 500;
 	win->mlx = mlx_init();
-	// if (mlx_init fails)
-	// destroy(win);
+	if (win->mlx == NULL)
+		destroy(win);
 	win->ptr = mlx_new_window(win->mlx, win->size, win->size, "fract-ol");
-	// if (mlx_new_window() fails)
-	// destroy();
+	if (win->ptr == NULL)
+		destroy(win);
 	win->pxl = (t_pixel *)malloc(sizeof(t_pixel) * win->size * win->size);
 	if (win->pxl == NULL)
 		destroy(win);
 	i = win->img;
 	i->ptr = mlx_new_image(win->mlx, win->size, win->size);
+	if (i->ptr == NULL)
+		destroy(win);
 	i->data = (int *)mlx_get_data_addr(i->ptr, &i->bpp, &i->spl, &i->e);
 	init_frctl(win, win->frctl);
 	init_color(win->col);

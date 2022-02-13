@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 09:12:39 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/02/12 11:33:28 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/02/13 19:47:32 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_dvg
 	long double	i;
 	long double	pow_r;
 	long double	pow_i;
-} t_dvg;
+}	t_dvg;
 
 typedef struct s_tmp
 {
@@ -37,7 +37,7 @@ typedef struct s_tmp
 	long double	*i;
 	long double	*pow_r;
 	long double	*pow_i;
-} t_tmp;
+}	t_tmp;
 
 typedef struct s_pixel
 {
@@ -45,7 +45,7 @@ typedef struct s_pixel
 	int			dvg;
 	long double	dvg_r;
 	long double	dvg_i;
-} t_pixel;
+}	t_pixel;
 
 typedef struct s_color
 {
@@ -55,7 +55,7 @@ typedef struct s_color
 	unsigned char	base_b;
 	unsigned char	grad;
 	unsigned char	hue_width;
-} t_color;
+}	t_color;
 
 typedef struct s_frctl
 {
@@ -72,7 +72,7 @@ typedef struct s_frctl
 	int			lim;
 	int			zoom;
 	int			max_dvg;
-} t_frctl;
+}	t_frctl;
 
 typedef struct s_img
 {
@@ -81,7 +81,7 @@ typedef struct s_img
 	int		bpp;
 	int		spl;
 	int		e;
-} t_img;
+}	t_img;
 
 typedef struct s_win
 {
@@ -94,7 +94,7 @@ typedef struct s_win
 	t_frctl	*frctl;
 	t_pixel	*pxl;
 	t_color	*col;
-} t_win;
+}	t_win;
 
 typedef void	(*t_col_func)(t_win *w, int x, int y);
 
@@ -132,11 +132,6 @@ void		kb_hook_move(int k, t_win *w);
 void		kb_hook_lim(int k, t_win *w);
 
 int			ms_hook(int btn, int x, int y, t_win *win);
-int			set_center();
-int			zoom_in();
-int			zoom_out();
-int			zoom_reset();
-int			move();
 
 void		show_usage(void);
 int			destroy(t_win *win);

@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:41:26 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/02/12 07:16:19 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/02/13 19:43:17 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_col_func	set_col_func(int c)
 		return (fullrange_hue);
 }
 
-int		to_rgb(int h, int s, int b)
+int	to_rgb(int h, int s, int b)
 {
 	int		rgb;
 	float	min;

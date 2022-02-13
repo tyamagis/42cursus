@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:41:26 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/02/12 12:29:39 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/02/13 19:25:33 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,26 @@ void	narrow_band_hue(t_win *w, int x, int y)
 void	wide_band_hue(t_win *w, int x, int y)
 {
 	t_color	*c;
-	int		base;
+	int		g;
 	int		d;
 	int		*t;
 	int		i;
 
 	c = w->col;
-	base = c->grad;
+	g = c->grad;
 	i = x + y * w->size;
 	d = w->pxl[i].dvg;
 	t = &w->img->data[i];
 	if (d == -1)
 		*t = 0;
-	else if (d < base)
-		*t = to_rgb((360 * d / base), c->base_s, c->base_b);
-	else if (d < base * base)
-		*t = to_rgb((360 * d / (base * base)), c->base_s, c->base_b);
-	else if (d < base * base * base)
-		*t = to_rgb((360 * d / (base * base * base)), c->base_s, c->base_b);
-	else if (d < base * base * base *base)
-		*t = to_rgb((360 * d / (base * base * base * base)), c->base_s, c->base_b);
+	else if (d < g)
+		*t = to_rgb((360 * d / g), c->base_s, c->base_b);
+	else if (d < g * g)
+		*t = to_rgb((360 * d / (g * g)), c->base_s, c->base_b);
+	else if (d < g * g * g)
+		*t = to_rgb((360 * d / (g * g * g)), c->base_s, c->base_b);
+	else if (d < g * g * g * g)
+		*t = to_rgb((360 * d / (g * g * g * g)), c->base_s, c->base_b);
 	else
 		*t = 0xffffff;
 	return ;

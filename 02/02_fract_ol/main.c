@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 11:09:14 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/02/13 10:55:46 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/02/13 20:03:00 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,18 @@ void	show_usage(void)
 	exit(0);
 }
 
-int		destroy(t_win *win)
+int	destroy(t_win *win)
 {
-	mlx_destroy_image(win->mlx, win->img->ptr);
-	mlx_destroy_window(win->mlx, win->ptr);
-	mlx_destroy_display(win->mlx);
+	if (win->mlx != NULL)
+	{
+		if (win->ptr != NULL)
+		{
+			if (win->img->ptr != NULL)
+				mlx_destroy_image(win->mlx, win->img->ptr);
+			mlx_destroy_window(win->mlx, win->ptr);
+		}
+		mlx_destroy_display(win->mlx);
+	}
 	if (win->frctl->real != NULL)
 		free(win->frctl->real);
 	if (win->frctl->imag != NULL)

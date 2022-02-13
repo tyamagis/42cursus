@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:54:55 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/02/12 07:37:40 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/02/13 19:27:19 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	dvg_ri(t_win *w, int x, int y)
 	i = x + y * w->size;
 	p = &w->pxl[i];
 	c = w->col;
-	h = (c->base_h + (p->dvg + (int)(p->dvg_r - p->dvg_i) * 200) % 360);
+	h = (c->base_h + (p->dvg + 200 * (int)(p->dvg_r - p->dvg_i)) % 360);
 	if (p->dvg == -1)
 		w->img->data[i] = 0;
 	else
