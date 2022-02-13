@@ -5,7 +5,8 @@ SRC		:= main.c init.c calc_frctl.c color_mode_a.c color_mode_b.c draw.c kb_hooks
 OBJ		:= $(SRC:.c=.o)
 MLXDIR	:= minilibx-linux
 MLX		:= -lmlx -lX11 -lXext -lm
-MLXA	:= libmlx_Linux.a
+MLXA	:= libmlx.a
+MLXA_L	:= libmlx_Linux.a
 
 .PHONY: all clean fcelan re
 
@@ -19,6 +20,6 @@ clean:
 	rm -rf $(OBJ)
 
 fclean: clean
-	rm -rf $(NAME) ./$(MLXDIR)/$(MLXA)
+	rm -rf $(NAME) ./$(MLXDIR)/$(MLXA) ./$(MLXDIR)/$(MLXA_L)
 
 re: fclean all
