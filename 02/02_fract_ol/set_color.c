@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:41:26 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/02/13 19:43:17 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/02/13 17:15:25 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,10 @@ int	to_rgb(int h, int s, int b)
 
 void	set_color(t_win *win)
 {
-	int			*tgt;
-	t_pixel		*pxl;
 	int			x;
 	int			y;
 	t_col_func	col_func;
 
-	tgt = win->img->data;
-	pxl = win->pxl;
 	col_func = set_col_func(win->col->mode);
 	y = 0;
 	while (y < win->size)
