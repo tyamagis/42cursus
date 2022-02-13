@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 13:41:26 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/02/13 19:33:29 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/02/13 13:01:27 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	calc_xymap(t_win *win)
 		tmp.i_factor = i * tmp.factor;
 		*f->real++ = tmp.i_factor + f->min_x;
 		*f->imag++ = tmp.i_factor + f->min_y;
-		*f->pow_r++ = *(->real - 1) * *(f->real - 1);
-		*f->pow_i++ = *(->imag - 1) * *(f->imag - 1);
+		*f->pow_r++ = *(f->real - 1) * *(f->real - 1);
+		*f->pow_i++ = *(f->imag - 1) * *(f->imag - 1);
 		i++;
 	}
 	f->real = tmp.r;
