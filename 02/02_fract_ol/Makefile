@@ -16,6 +16,9 @@ $(NAME): $(OBJ)
 	make -C ./minilibx-linux
 	$(CC) $(CFLG) $^ -L./$(MLXDIR) $(MLX) -o $(NAME)
 
+.c.o:
+	$(CC) -c $(CFLG) -I$(MLXDIR) $<
+
 clean:
 	rm -rf $(OBJ)
 
