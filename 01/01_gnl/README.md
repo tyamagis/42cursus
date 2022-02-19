@@ -2,6 +2,13 @@
 
 read from fd, and return each line per gnl() runs.
 
+```mermaid
+flowchart TD
+  subgraph main()
+  open-->call get_next_line(fd)
+  end
+```
+
 ## gnl_test.sh
 
 when you run this shell script, 
