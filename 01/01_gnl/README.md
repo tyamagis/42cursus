@@ -3,9 +3,8 @@
 read from fd, and return each line per gnl() runs.
 
 ```mermaid
-flowchart LR;
+flowchart TD;
   subgraph gnl;
-  direction LR;
     subgraph s0[check arguments error];
       c0[check fd, BUFFERSIZE] --> c1{is fd valid ?};
       c1 -- Yes --> c2{is BUFFERSIZE greater than zero ?};
