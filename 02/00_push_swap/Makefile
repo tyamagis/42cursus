@@ -6,12 +6,15 @@ L_CC	:= clang
 L_FLAG	:= -Wall -Wextra -Werror -g -fsanitize=leaks
 
 SRCDIR	:= srcs
-SRCS	:= push_swap.c \
-   psw_init_stat.c \
-   psw_utils.c \
-   psw_operations.c \
+SRCS	:= \
+	push_swap.c \
+	psw_init_stat.c \
+	psw_utils.c \
+	psw_operations.c \
 
 OBJS	:= $(SRCS:.c=.o)
+
+.PHONY: all re clean fclean
 
 all: $(NAME)
 
@@ -20,3 +23,11 @@ $(NAME): $(OBJS)
 
 .c.o:
 	$(CC) $(FLAG) -c $<
+
+clean:
+	rm -rf $(OBJS)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
