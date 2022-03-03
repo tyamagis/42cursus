@@ -6,12 +6,14 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 10:08:57 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/02/14 10:11:33 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/03/03 21:08:31 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
 swap(){} // sa, sb, ss(sa and sb)
 
 push(){} // pa, pb
 
 rotate(){} // ra, rb, rr, rra, rrb, rrr
+*/

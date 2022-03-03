@@ -6,7 +6,7 @@
 /*   By: tyamagis </var/mail/tyamagis>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 01:53:19 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/03/01 21:56:23 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/03/03 21:08:10 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define ERR_NOT_INT " >> including non-INT argument.\n"
 # define ERR_DUP " >> including duplicate arguments\n"
 
+# define INT_MAX 2147483647
 # define PLUS 1
 # define MINUS -1
 
@@ -42,7 +43,7 @@ typedef struct s_stat
 }	t_stat;
 
 t_stack	*psw_init_stat(t_stat *stat, int ac, char **av);
-void	*psw_free_stack(t_stack *stack);
+void	psw_free_stack(t_stack *stack);
 size_t	psw_strlen(char *s);
 void	psw_exit_with_msg(char *msg);
 

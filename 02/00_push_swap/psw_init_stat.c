@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 20:02:12 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/03/01 21:55:22 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/03/03 16:14:00 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	*psw_argv_to_num(char *s, int *num)
 
 void	psw_check_duparg(t_stat *stat, int *argnum)
 {
-	unsigned int	i;
-	unsigned int	j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < stat->qty_all - 1)
@@ -58,9 +58,9 @@ void	psw_check_duparg(t_stat *stat, int *argnum)
 
 void	psw_convert_args(t_stat *stat, int *argnum, t_stack *stack)
 {
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	min_idx;
+	int	i;
+	int	j;
+	int	min_idx;
 
 	i = 0;
 	while (i < stat->qty_all - 1)
@@ -105,6 +105,7 @@ t_stack	*psw_init_stat(t_stat *stat, int ac, char **av)
 		printf("%d, ", arg_num[i - 1]);
 	i = 0;
 	while (i++ < stat->qty_all)
-		printf("%d, ", stack[i]->elem);
+		printf("%d, ", stack[i].elem);
+
 	return (stack);
 }

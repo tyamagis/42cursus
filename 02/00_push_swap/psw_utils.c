@@ -6,11 +6,13 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 10:12:42 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/03/01 21:56:24 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/03/03 21:07:54 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*psw_free_stack(t_stack *stack)
+#include "push_swap.h"
+
+void	psw_free_stack(t_stack *stack)
 {
 	t_stack	*tmp;
 
