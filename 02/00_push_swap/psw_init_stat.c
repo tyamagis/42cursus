@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 20:02:12 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/03/03 16:14:00 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/03/03 21:13:21 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,11 @@ t_stack	*psw_init_stat(t_stat *stat, int ac, char **av)
 	psw_convert_args(stat, arg_num, stack); // <--- WIP
 	/* test */
 	i = 0;
+	printf("argnums\n");
 	while (i++ < ac - 1)
 		printf("%d, ", arg_num[i - 1]);
 	i = 0;
+	printf("\nstack.elems\n");
 	while (i++ < stat->qty_all)
 		printf("%d, ", stack[i].elem);
 

@@ -14,7 +14,7 @@ SRCS	:= \
 
 OBJS	:= $(SRCS:.c=.o)
 
-.PHONY: all re clean fclean
+.PHONY: $(NAME) all re clean fclean test
 
 all: $(NAME)
 
@@ -31,3 +31,6 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+test: re
+	./test_psw.sh
