@@ -35,4 +35,4 @@ fclean: clean
 re: fclean all
 
 test: re
-	./test_psw.sh
+	./test_psw_arguments.sh

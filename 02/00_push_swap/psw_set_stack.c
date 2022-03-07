@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 17:35:10 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/03/07 18:38:52 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/03/07 23:36:09 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ static void	set_addr(t_stat *stat, t_stack *stack)
 		if (i < stat->qty_all - 1)
 			stack[i].next = &stack[i + 1];
 		else
-			stack[i].next = &stack[0];
+			stack[i].next = NULL;
 		if (i > 0)
 			stack[i].prev = &stack[i - 1];
 		else
-			stack[i].prev = &stack[stat->qty_all - 1];
+			stack[i].prev = NULL;
 		i++;
 	}
 	return ;
@@ -93,38 +93,5 @@ void	psw_set_stack(t_stat *stat, int *argnum, t_stack *stack)
 {
 	set_elem(stat, argnum, stack);
 	set_addr(stat, stack);
-
-	printf("\n << set_stack() >>\n");
-	printf("stack.elem >>\n");
-	int i = 0;
-	while (i < stat->qty_all)
-	{
-		printf("%d, ", stack[i].elem);
-		i++;
-	}
-	printf("\n");
-
-	printf("stack.next >>\n");
-	i = 0;
-	t_stack	*ptr = stack[0].next;
-	while (i < stat->qty_all * 2)
-	{
-		printf("%d, ", ptr->elem);
-		ptr = ptr->next;
-		i++;
-	}
-	printf("\n");
-
-	printf("stack.prev >>\n");
-	i = 0;
-	ptr = stack[0].prev;
-	while (i < stat->qty_all * 2)
-	{
-		printf("%d, ", ptr->elem);
-		ptr = ptr->prev;
-		i++;
-	}
-	printf("\n");
-
 	return ;
 }
