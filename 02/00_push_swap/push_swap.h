@@ -6,7 +6,7 @@
 /*   By: tyamagis </var/mail/tyamagis>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 01:53:19 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/03/03 21:08:10 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/03/07 18:35:10 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@
 # define ERR_DUP " >> including duplicate arguments\n"
 
 # define INT_MAX 2147483647
+# define INT_MIN -2147483648
 # define PLUS 1
 # define MINUS -1
+# define TRUE 1
+# define FALSE 0
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -46,6 +49,8 @@ t_stack	*psw_init_stat(t_stat *stat, int ac, char **av);
 void	psw_free_stack(t_stack *stack);
 size_t	psw_strlen(char *s);
 void	psw_exit_with_msg(char *msg);
+void	psw_set_stack(t_stat *stat, int *argnum, t_stack *stack);
+int		psw_is_sorted(t_stat *stat, t_stack *stack);
 
 #endif
 

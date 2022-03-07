@@ -11,6 +11,8 @@ SRCS	:= \
 	psw_init_stat.c \
 	psw_utils.c \
 	psw_operations.c \
+	psw_set_stack.c \
+	psw_is_sorted.c \
 
 OBJS	:= $(SRCS:.c=.o)
 
