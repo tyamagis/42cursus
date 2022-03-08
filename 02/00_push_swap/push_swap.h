@@ -41,17 +41,21 @@ typedef struct s_stat
 {
 	int		is_sorted;
 	int		qty_all;
-	t_stack	*top_a;
-	t_stack	*top_b;
 	int		qty_a;
+	t_stack	*top_a;
+	t_stack	*last_a;
+	t_stack	*last_b;
 }	t_stat;
 
 t_stack	*psw_init_stat(t_stat *stat, int ac, char **av);
 void	psw_free_stack(t_stack *stack);
 size_t	psw_strlen(char *s);
 void	psw_exit_with_msg(char *msg);
-void	psw_set_stack(t_stat *stat, int *argnum, t_stack *stack);
+t_stack	*psw_set_stack(t_stat *stat, int *argnum);
 int		psw_is_sorted(t_stat *stat, t_stack *stack);
+
+void	psw_push(t_stat *stat, char dir);
+void	psw_swap(t_stat *stat, char which);
 
 #endif
 

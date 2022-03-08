@@ -12,7 +12,7 @@
 
 #include "./push_swap.h"
 
-static int	*psw_argv_to_num(char *s, int *num)
+static int	*argv_to_num(char *s, int *num)
 {
 	int	sign;
 
@@ -36,7 +36,7 @@ static int	*psw_argv_to_num(char *s, int *num)
 	return (num);
 }
 
-static void	psw_check_duparg(t_stat *stat, int *argnum)
+static void	check_duparg(t_stat *stat, int *argnum)
 {
 	int	i;
 	int	j;
@@ -56,27 +56,33 @@ static void	psw_check_duparg(t_stat *stat, int *argnum)
 	return ;
 }
 
-t_stack	*psw_init_stat(t_stat *stat, int ac, char **av)
+static int	*set_argnum(t_stat *stat, int ac, char **av)
 {
-	int		*arg_num;
-	int		i;
-	t_stack	*stack;
+	int	*argnum;
+	int	i;
 
-	stat->qty_all = ac - 1;
-	stat->qty_a = ac - 1;
-	arg_num = (int *)malloc(sizeof(int) * (ac - 1));
-	if (arg_num == NULL)
+	argnum = (int *)malloc(sizeof(int) * (ac - 1));
+	if (argnum == NULL)
 		psw_exit_with_msg(ERR_MALLOC);
 	i = 0;
 	while (i++ < ac - 1)
-		psw_argv_to_num(av[i], &arg_num[i - 1]);
-	psw_check_duparg(stat, arg_num);
-	stack = (t_stack *)malloc(sizeof(t_stack) * (ac - 1));
-	if (stack == NULL)
-		psw_exit_with_msg(ERR_MALLOC);
+		argv_to_num(av[i], &argnum[i - 1]);
+	check_duparg(stat, argnum);
+	return (argnum);
+}
+
+t_stack	*psw_init_stat(t_stat *stat, int ac, char **av)
+{
+	int		*argnum;
+	t_stack	*stack;
+
+	argnum = set_argnum(stat, ac, av);
+	stat->qty_all = ac - 1;
+	stat->qty_a = ac - 1;
+	stat->last_b = NULL;
+	stack = psw_set_stack(stat, argnum);
 	stat->top_a = stack;
-	stat->top_b = NULL;
-	psw_set_stack(stat, arg_num, stack); // <--- WIP
+	stat->last_a = stat->top_a->prev;
 	stat->is_sorted = psw_is_sorted(stat, stack);
 	return (stack);
 }

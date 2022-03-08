@@ -52,11 +52,11 @@ static void	set_addr(t_stat *stat, t_stack *stack)
 		if (i < stat->qty_all - 1)
 			stack[i].next = &stack[i + 1];
 		else
-			stack[i].next = stat->top_a;
+			stack[i].next = &stack[0];
 		if (i > 0)
 			stack[i].prev = &stack[i - 1];
 		else
-			stack[i].prev = stat->top_b;
+			stack[i].prev = &stack[stat->qty_all - 1];
 		i++;
 	}
 	return ;
@@ -89,9 +89,14 @@ static void	set_elem(t_stat *stat, int *argnum, t_stack *stack)
 	return ;
 }
 
-void	psw_set_stack(t_stat *stat, int *argnum, t_stack *stack)
+t_stack	*psw_set_stack(t_stat *stat, int *argnum)
 {
+	t_stack	*stack;
+
+	stack = (t_stack *)malloc(sizeof(t_stack) * stat->qty_all);
+	if (stack == NULL)
+		psw_exit_with_msg(ERR_MALLOC);
 	set_elem(stat, argnum, stack);
 	set_addr(stat, stack);
-	return ;
+	return (stack);
 }
