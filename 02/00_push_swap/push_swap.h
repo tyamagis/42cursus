@@ -42,6 +42,7 @@ typedef struct s_stat
 	int		is_sorted;
 	int		qty_all;
 	t_stack	*top_a;
+	t_stack	*top_b;
 	int		qty_a;
 }	t_stat;
 

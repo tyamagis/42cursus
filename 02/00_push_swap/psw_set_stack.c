@@ -52,11 +52,11 @@ static void	set_addr(t_stat *stat, t_stack *stack)
 		if (i < stat->qty_all - 1)
 			stack[i].next = &stack[i + 1];
 		else
-			stack[i].next = NULL;
+			stack[i].next = stat->top_a;
 		if (i > 0)
 			stack[i].prev = &stack[i - 1];
 		else
-			stack[i].prev = NULL;
+			stack[i].prev = stat->top_b;
 		i++;
 	}
 	return ;

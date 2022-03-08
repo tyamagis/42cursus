@@ -71,27 +71,12 @@ t_stack	*psw_init_stat(t_stat *stat, int ac, char **av)
 	while (i++ < ac - 1)
 		psw_argv_to_num(av[i], &arg_num[i - 1]);
 	psw_check_duparg(stat, arg_num);
-	/* --- test --- */
-	i = 0;
-	printf("argnums >>\n");
-	while (i++ < ac - 1)
-		printf("%d, ", arg_num[i - 1]);
-	printf("\n");
-	/* --- end test --- */
 	stack = (t_stack *)malloc(sizeof(t_stack) * (ac - 1));
 	if (stack == NULL)
 		psw_exit_with_msg(ERR_MALLOC);
 	stat->top_a = stack;
+	stat->top_b = NULL;
 	psw_set_stack(stat, arg_num, stack); // <--- WIP
-	/* --- test --- */
-	printf("\n");
-	i = 0;
-	printf("stack >>\n");
-	while (i++ < ac - 1)
-		printf("%d, ", stack[i - 1].elem);
-	/* --- end test --- */
 	stat->is_sorted = psw_is_sorted(stat, stack);
-	// TASKS =====
-	//  - set prev and next
 	return (stack);
 }
