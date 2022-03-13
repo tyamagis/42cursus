@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int	is_non_intmin(int *argnum, int size)
+static int	is_no_intmin(int *argnum, int size)
 {
 	int	i;
 
@@ -44,7 +44,7 @@ static int	set_intmin(t_stat *stat, int *argnum, t_stack *stack)
 
 static void	set_addr(t_stat *stat, t_stack *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < stat->qty_all)
@@ -70,7 +70,7 @@ static void	set_elem(t_stat *stat, int *argnum, t_stack *stack)
 	int	min_idx;
 
 	idx_num = set_intmin(stat, argnum, stack);
-	while (is_non_intmin(argnum, stat->qty_all))
+	while (is_no_intmin(argnum, stat->qty_all))
 	{
 		i = 0;
 		min_num = INT_MAX;
@@ -89,14 +89,13 @@ static void	set_elem(t_stat *stat, int *argnum, t_stack *stack)
 	return ;
 }
 
-t_stack	*psw_set_stack(t_stat *stat, int *argnum)
+void	psw_set_stack(t_stat *stat, int *argnum)
 {
-	t_stack	*stack;
-
-	stack = (t_stack *)malloc(sizeof(t_stack) * stat->qty_all);
-	if (stack == NULL)
+	stat->top_a = (t_stack *)malloc(sizeof(t_stack) * stat->qty_all);
+	if (stat->top_a == NULL)
 		psw_exit_with_msg(ERR_MALLOC);
-	set_elem(stat, argnum, stack);
-	set_addr(stat, stack);
+	stat->top_b = NULL;
+	set_elem(stat, argnum, stat->top_a);
+	set_addr(stat, stat->top_a);
 	return (stack);
 }

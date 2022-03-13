@@ -13,6 +13,7 @@ SRCS	:= \
 	psw_operations.c \
 	psw_set_stack.c \
 	psw_is_sorted.c \
+	psw_fool_sort.c \
 
 OBJS	:= $(SRCS:.c=.o)
 

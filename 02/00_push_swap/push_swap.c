@@ -18,7 +18,8 @@ void	print_stack(t_stat *stat)
 	printf("----------\n");
 	printf("stack A : ");
 	int i = 0;
-	t_stack	*stk = stat->top_a;
+	t_stack	*stk = stat->top_a->self;
+
 	while (i < stat->qty_a)
 	{
 		printf("%d, ", stk->elem);
@@ -27,7 +28,7 @@ void	print_stack(t_stat *stat)
 	}
 	printf("\nstack B : ");
 	i = 0;
-	stk = stat->top_a->prev;
+	stk = stat->top_b->self;
 	while (i < stat->qty_all - stat->qty_a)
 	{
 		printf("%d, ", stk->elem);
@@ -38,66 +39,23 @@ void	print_stack(t_stat *stat)
 	return ;
 }
 
-void	test_push(t_stat *stat)
+void	test_push(t_stat *stat, char which, int times)
 {
-	psw_push(stat, 'b');
-	print_stack(stat);
-
-	psw_push(stat, 'b');
-	print_stack(stat);
-
-	psw_push(stat, 'b');
-	print_stack(stat);
-
-	psw_push(stat, 'b');
-	print_stack(stat);
-
-	psw_push(stat, 'b');
-	print_stack(stat);
-
-	psw_push(stat, 'b');
-	print_stack(stat);
-
-	psw_push(stat, 'a');
-	print_stack(stat);
-
-	psw_push(stat, 'a');
+	while (times-- > 0)
+		psw_push(stat, which);
 	print_stack(stat);
 }
 
 int	main(int ac, char *av[])
 {
 	t_stat	stat;
-	t_stack	*stack;
 
 	if (ac < 2)
 		psw_exit_with_msg(ERR_FEW_ARGS);
-	stack = psw_init_stat(&stat, ac, av);
-
-	// TEST
-	printf("arg status : ");
-	if (stat.is_sorted == TRUE)
+	psw_init_stat(&stat, ac, av);
+	while (stat.is_sorted == FALSE)
 	{
-		printf(">> sorted\n");
-		int i = 0;
-		while (ac-- > 1)
-		{
-			printf("%d, ", stack[i].elem);
-			i++;
-		}
+		fool_sort(&stat);
 	}
-	else
-	{
-		printf(">> NOT sorted\n");
-		int i = 0;
-		while (ac-- > 1)
-		{
-			printf("%d, ", stack[i].elem);
-			i++;
-		}
-	}
-	printf("\n");
-	print_stack(&stat);
-	test_push(&stat);
 	return (0);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./push_swap.h"
+#include "push_swap.h"
 
 static int	*argv_to_num(char *s, int *num)
 {
@@ -71,18 +71,14 @@ static int	*set_argnum(t_stat *stat, int ac, char **av)
 	return (argnum);
 }
 
-t_stack	*psw_init_stat(t_stat *stat, int ac, char **av)
+void	psw_init_stat(t_stat *stat, int ac, char **av)
 {
 	int		*argnum;
-	t_stack	*stack;
 
-	argnum = set_argnum(stat, ac, av);
 	stat->qty_all = ac - 1;
 	stat->qty_a = ac - 1;
-	stat->last_b = NULL;
-	stack = psw_set_stack(stat, argnum);
-	stat->top_a = stack;
-	stat->last_a = stat->top_a->prev;
-	stat->is_sorted = psw_is_sorted(stat, stack);
-	return (stack);
+	argnum = set_argnum(stat, ac, av);
+	psw_set_stack(stat, argnum);
+	psw_is_sorted(stat);
+	return ;
 }
