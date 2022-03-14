@@ -31,6 +31,9 @@ void	psw_save_operation(t_stat *stat, char *s)
 	char	*new_str;
 	char	*tmp_str;
 
+	/* test */
+	write(1, s, psw_strlen(s));
+	/* ---- */
 	old_str = stat->op_history;
 	if (old_str == NULL)
 		size = 0;

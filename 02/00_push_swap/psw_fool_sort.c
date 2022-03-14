@@ -12,7 +12,7 @@ int	search_min_in_a(t_stat *stat)
 	min_idx = 0;
 	stack_a = stat->top_a;
 	// search minimam
-	while (i < stat->qty_a - 1)
+	while (i < stat->qty_a)
 	{
 		if (stack_a->elem < min_elem)
 		{
@@ -32,7 +32,7 @@ void	fool_sort(t_stat *stat)
 	psw_is_sorted(stat);
 	while (stat->is_sorted == false)
 	{
-		while (stat->qty_a > 0)
+		while (stat->qty_a > 1)
 		{
 			min_idx = search_min_in_a(stat);
 			while (min_idx-- > 0)
@@ -41,7 +41,6 @@ void	fool_sort(t_stat *stat)
 				break ;
 			psw_push(stat, 'b');
 		}
-		print_stack(stat);
 		while (stat->qty_a != stat->qty_all)
 			psw_push(stat, 'a');
 		psw_is_sorted(stat);
