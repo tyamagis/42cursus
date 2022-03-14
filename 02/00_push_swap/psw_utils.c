@@ -32,7 +32,7 @@ void	psw_save_operation(t_stat *stat, char *s)
 	char	*tmp_str;
 
 	/* test */
-	write(1, s, psw_strlen(s));
+	//write(1, s, psw_strlen(s));
 	/* ---- */
 	old_str = stat->op_history;
 	if (old_str == NULL)
@@ -53,6 +53,7 @@ void	psw_save_operation(t_stat *stat, char *s)
 	*tmp_str = '\0';
 	free(stat->op_history);
 	stat->op_history = new_str;
+	stat->op_times++;
 	return ;
 }
 

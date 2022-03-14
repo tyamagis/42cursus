@@ -101,6 +101,7 @@ void	psw_init_stat(t_stat *stat, int ac, char **av)
 	stat->qty_all = ac - 1;
 	stat->qty_a = ac - 1;
 	stat->op_history = NULL;
+	stat->op_times = 0;
 	argnum = set_argnum(stat, ac, av);
 	psw_set_stack(stat, argnum);
 	psw_is_sorted(stat);

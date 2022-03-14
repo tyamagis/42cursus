@@ -22,5 +22,6 @@ int	main(int ac, char *av[])
 	fool_sort(&stat);
 	//psw_sort(&stat);
 	psw_output_operation(stat.op_history);
+	//printf("\n >> [ %d ] ops.\n", stat.op_times);
 	return (0);
 }

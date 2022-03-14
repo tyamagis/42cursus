@@ -24,6 +24,7 @@
 # define PLUS 1
 # define MINUS -1
 # define ORDER 0
+# define REVERSE 1
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -45,6 +46,7 @@ typedef struct s_stat
 	t_stack	*top_a;
 	t_stack	*top_b;
 	char	*op_history;
+	int		op_times;
 }	t_stat;
 
 void	psw_init_stat(t_stat *stat, int ac, char **av);

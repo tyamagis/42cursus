@@ -21,7 +21,6 @@ bool	psw_is_sorted(t_stat *stat)
 	if (stat->qty_all != stat->qty_a)
 	{
 		stat->is_sorted = false;
-		printf("qty checked >> false\n");
 		return (false);
 	}
 	i = 0;
@@ -30,13 +29,11 @@ bool	psw_is_sorted(t_stat *stat)
 		if (stack_a->elem > stack_a->next->elem)
 		{
 			stat->is_sorted = false;
-			printf("elem checked >> false\n");
 			return (false);
 		}
 		i++;
 		stack_a = stack_a->next;
 	}
 	stat->is_sorted = true;
-	printf("elem checked >> true\n");
 	return (true);
 }

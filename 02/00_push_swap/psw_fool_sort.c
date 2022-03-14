@@ -35,8 +35,16 @@ void	fool_sort(t_stat *stat)
 		while (stat->qty_a > 1)
 		{
 			min_idx = search_min_in_a(stat);
-			while (min_idx-- > 0)
-				psw_rotate(stat, 'a', ORDER);
+			if (min_idx < stat->qty_a - min_idx)
+			{
+				while (min_idx-- > 0)
+					psw_rotate(stat, 'a', ORDER);
+			}
+			else
+			{
+				while (min_idx++ != stat->qty_a)
+					psw_rotate(stat, 'a', REVERSE);
+			}
 			if (psw_is_sorted(stat))
 				break ;
 			psw_push(stat, 'b');
