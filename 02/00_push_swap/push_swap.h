@@ -23,13 +23,12 @@
 # define INT_MIN -2147483648
 # define PLUS 1
 # define MINUS -1
-# define TRUE 1
-# define FALSE 0
+# define ORDER 0
 
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
+# include <stdbool.h>
 
 typedef struct s_stack
 {
@@ -45,23 +44,27 @@ typedef struct s_stat
 	int		qty_a;
 	t_stack	*top_a;
 	t_stack	*top_b;
+	char	*op_history;
 }	t_stat;
 
 void	psw_init_stat(t_stat *stat, int ac, char **av);
 void	psw_set_stack(t_stat *stat, int *argnum);
-void	psw_is_sorted(t_stat *stat);
+bool	psw_is_sorted(t_stat *stat);
 
 void	psw_push(t_stat *stat, char dir);
 void	psw_swap(t_stat *stat, char which);
-void	psw_rotate_a(t_stat *stat, char dir);
-void	psw_rotate_b(t_stat *stat, char dir);
+void	psw_rotate(t_stat *stat, char which, char dir);
 
 void	psw_free_stack(t_stack *stack);
 size_t	psw_strlen(char *s);
 void	psw_exit_with_msg(char *msg);
-void	psw_set_empty(t_top *top);
+void	psw_save_operation(t_stat *stat, char *s);
+void	psw_output_operation(char *s);
 
 void	fool_sort(t_stat *stat);
+void	print_stack(t_stat *stat);
+
+void	tests(t_stat *stat);
 
 #endif
 

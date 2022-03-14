@@ -14,6 +14,7 @@ SRCS	:= \
 	psw_set_stack.c \
 	psw_is_sorted.c \
 	psw_fool_sort.c \
+	psw_test_functions.c \
 
 OBJS	:= $(SRCS:.c=.o)
 
@@ -34,6 +35,3 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
-
-test: re
-	./test_psw_arguments.sh

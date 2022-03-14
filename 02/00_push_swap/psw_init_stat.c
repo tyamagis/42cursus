@@ -12,11 +12,34 @@
 
 #include "push_swap.h"
 
+static void	check_overflow(int *num, int sign, int digit)
+{
+	int	digit_num;
+	int	tmp_num;
+
+	if ((*num >= 0 && sign == MINUS) || (*num < 0 && sign == PLUS))
+		psw_exit_with_msg(ERR_NOT_INT);
+	digit_num = 0;
+	tmp_num = *num * sign;
+	if (tmp_num == 0)
+		digit_num = 1;
+	while (tmp_num != 0)
+	{
+		digit_num++;
+		tmp_num /= 10;
+	}
+	if (digit != digit_num)
+		psw_exit_with_msg(ERR_NOT_INT);
+	return ;
+}
+
 static int	*argv_to_num(char *s, int *num)
 {
 	int	sign;
+	int	digit;
 
 	*num = 0;
+	digit = 0;
 	sign = PLUS;
 	if (*s == '-')
 	{
@@ -30,9 +53,9 @@ static int	*argv_to_num(char *s, int *num)
 		else
 			psw_exit_with_msg(ERR_NOT_INT);
 		s++;
+		digit++;
 	}
-	if ((*num >= 0 && sign == MINUS) || (*num < 0 && sign == PLUS))
-		psw_exit_with_msg(ERR_NOT_INT);
+	check_overflow(num, sign, digit);
 	return (num);
 }
 
@@ -77,6 +100,7 @@ void	psw_init_stat(t_stat *stat, int ac, char **av)
 
 	stat->qty_all = ac - 1;
 	stat->qty_a = ac - 1;
+	stat->op_history = NULL;
 	argnum = set_argnum(stat, ac, av);
 	psw_set_stack(stat, argnum);
 	psw_is_sorted(stat);

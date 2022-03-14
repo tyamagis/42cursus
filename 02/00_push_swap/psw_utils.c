@@ -12,6 +12,47 @@
 
 #include "push_swap.h"
 
+void	psw_output_operation(char *s)
+{
+	size_t	size;
+
+	if (s == NULL)
+		size = 0;
+	else
+		size = psw_strlen(s);
+	write(1, s, size);
+	return ;
+}
+
+void	psw_save_operation(t_stat *stat, char *s)
+{
+	size_t	size;
+	char	*old_str;
+	char	*new_str;
+	char	*tmp_str;
+
+	old_str = stat->op_history;
+	if (old_str == NULL)
+		size = 0;
+	else
+		size = psw_strlen(old_str);
+	new_str = (char *)malloc(size + psw_strlen(s) + 1);
+	if (new_str == NULL)
+		psw_exit_with_msg(ERR_MALLOC);
+	tmp_str = new_str;
+	if (old_str != NULL)
+	{
+		while (*old_str != '\0')
+			*tmp_str++ = *old_str++;
+	}
+	while (*s != '\0')
+		*tmp_str++ = *s++;
+	*tmp_str = '\0';
+	free(stat->op_history);
+	stat->op_history = new_str;
+	return ;
+}
+
 size_t	psw_strlen(char *s)
 {
 	size_t	size;

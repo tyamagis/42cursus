@@ -2,41 +2,48 @@
 
 int	search_min_in_a(t_stat *stat)
 {
-	int	min_elem;
-	int	min_elem_idx;
+	int		min_elem;
+	int		i;
+	int		min_idx;
 	t_stack	*stack_a;
 
 	min_elem = stat->qty_all;
-	min_elem_idx = 0;
-	stack_a = stat->top_a->self;
+	i = 0;
+	min_idx = 0;
+	stack_a = stat->top_a;
 	// search minimam
-	while (min_elem_idx < stat->qty_a - 1)
+	while (i < stat->qty_a - 1)
 	{
 		if (stack_a->elem < min_elem)
+		{
 			min_elem = stack_a->elem;
-		min_elem_idx++;
+			min_idx = i;
+		}
+		stack_a = stack_a->next;
+		i++;
 	}
-	return (min_elem_idx);
+	return (min_idx);
 }
 
 void	fool_sort(t_stat *stat)
 {
-	int	min_elem_idx;
-	int	i;
+	int	min_idx;
 
-	i = 0;
-	if (stat->qty_a > 0)
+	psw_is_sorted(stat);
+	while (stat->is_sorted == false)
 	{
-		min_elem_idx = search_min_in_a(stat);
-		while (min_elem_idx-- > 0)
-			psw_rotate_a(stat, ORDER);
-		psw_push(stat, 'b');
-	}
-	else
-	{
-		while (i++ < stat->qty_all - 1)
+		while (stat->qty_a > 0)
+		{
+			min_idx = search_min_in_a(stat);
+			while (min_idx-- > 0)
+				psw_rotate(stat, 'a', ORDER);
+			if (psw_is_sorted(stat))
+				break ;
+			psw_push(stat, 'b');
+		}
+		print_stack(stat);
+		while (stat->qty_a != stat->qty_all)
 			psw_push(stat, 'a');
+		psw_is_sorted(stat);
 	}
-	stat->is_sorted = psw_is_sorted(stat);
-	return ;
 }

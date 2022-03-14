@@ -12,80 +12,124 @@
 
 #include "push_swap.h"
 
+static void	psw_push_remove_from_src(t_stat *stat, char dir)
+{
+	t_stack *src;
+
+	if (dir == 'a')
+	{
+		src = stat->top_b;
+		if (stat->qty_all - stat->qty_a == 1)
+		{
+			stat->top_b = NULL;
+			return ;
+		}
+		stat->top_b = src->next;
+	}
+	else
+	{
+		src = stat->top_a;
+		if (stat->qty_a == 1)
+		{
+			stat->top_a = NULL;
+			return ;
+		}
+		stat->top_a = src->next;
+	}
+	src->next->prev = src->prev;
+	src->prev->next = src->next;
+	return ;
+}
+
+static void	psw_push_add_to_dst(t_stack *dst, t_stack *src)
+{
+	if (dst == NULL)
+	{
+		src->next = src;
+		src->prev = src;
+	}
+	else
+	{
+		src->next = dst;
+		src->prev = dst->prev;
+		dst->prev->next = src;
+		dst->prev = src;
+	}
+}
+
 void	psw_push(t_stat *stat, char dir)
 {
-	t_stack	*dst_top;
-	t_stack	*src_top;
+	t_stack	*src;
 
-	if (dir == 'a' && (stat->qty_all - stat->qty_a) != 0)
+	if ((dir == 'a' && stat->qty_all - stat->qty_a == 0) ||
+		(dir == 'b' && stat->qty_a == 0))
+			return ;
+	else if (dir == 'a')
 	{
-		dst_top = stat->top_a;
-		src_top = stat->top_b;
-		stat->top_a = src_top;
-		stat->top_b = src_top->next;
+		src = stat->top_b;
+		psw_push_remove_from_src(stat, dir);
+		psw_push_add_to_dst(stat->top_a, src);
+		stat->top_a = src;
 		stat->qty_a++;
+		psw_save_operation(stat, "pa\n");
 	}
-	else if (dir == 'b' && stat->qty_a != 0)
+	else
 	{
-		dst_top = stat->top_b;
-		src_top = stat->top_a;
-		stat->top_a = src_top->next;
-		stat->top_b = src_top;
+		src = stat->top_a;
+		psw_push_remove_from_src(stat, dir);
+		psw_push_add_to_dst(stat->top_b, src);
+		stat->top_b = src;
 		stat->qty_a--;
+		psw_save_operation(stat, "pb\n");
 	}
-	src_top->next->prev = src_top->prev;
-	src_top->prev->next = src_top->next;
-	dst_top->prev->next = src_top;
-	src_top->next = dst_top;
-	src_top->prev = dst_top->prev;
-	dst_top->prev = src_top;
-	printf("\n [[ push %c ]]\n", dir);
 	return ;
 }
 
 void	psw_swap(t_stat *stat, char which)
 {
-	t_stack	*new_top;
-	t_stack	*old_top;
+	int		tmp;
+	t_stack	*tgt;
 
+	if ((which == 'a' && stat->qty_a < 2) ||
+		(which == 'b' && stat->qty_all - stat->qty_a < 2))
+		return ;
 	if (which == 'a')
 	{
-		old_top = stat->top_a;
-		stat->top_a = old_top->next;
+		tgt = stat->top_a;
+		psw_save_operation(stat, "sa\n");
 	}
 	else
 	{
-		old_top = stat->top_b;
-		stat->top_b = old_top->next;
+		tgt = stat->top_b;
+		psw_save_operation(stat, "sb\n");
 	}
-	new_top = old_top->next;
-	last = old_top->prev;
-	new_top->next->prev = old_top;
-	last->next = new_top;
-	new_top->prev = last;
-	old_top->next = new_top->next;
-	new_top->next = old_top;
-	old_top->prev = new_top;
-	printf("\n [[ swap %c ]]\n", which);
+	tmp = tgt->elem;
+	tgt->elem = tgt->next->elem;
+	tgt->next->elem = tmp;
 	return ;
 }
 
-void	psw_rotate(t_stat *stat, char which)
+void	psw_rotate(t_stat *stat, char which, char dir)
 {
-	if (which == 'a')
+	if (which == 'a' && dir == ORDER)
+	{
 		stat->top_a = stat->top_a->next;
-	else
+		psw_save_operation(stat, "ra\n");
+	}
+	else if (which == 'b' && dir == ORDER)
+	{
 		stat->top_b = stat->top_b->next;
-	printf("\n [[ rotate a %c ]]\n", dir);
-	return ;
-}
-
-void	psw_r_rotate(t_stat *stat, char which)
-{
-	if (which == 'a')
+		psw_save_operation(stat, "rb\n");
+	}
+	else if (which == 'a' && dir != ORDER)
+	{
 		stat->top_a = stat->top_a->prev;
+		psw_save_operation(stat, "rra\n");
+	}
 	else
+	{
 		stat->top_b = stat->top_b->prev;
-	printf("\n [[ rotate a %c ]]\n", dir);
+		psw_save_operation(stat, "rrb\n");
+	}
 	return ;
 }

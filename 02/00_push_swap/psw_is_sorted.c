@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	psw_is_sorted(t_stat *stat)
+bool	psw_is_sorted(t_stat *stat)
 {
 	int	i;
 	t_stack	*stack_a;
@@ -21,19 +21,19 @@ void	psw_is_sorted(t_stat *stat)
 	stack_a = stat->top_a;
 	if (stat->qty_all != stat->qty_a)
 	{
-		stat->is_sorted = FALSE;
-		return ;
+		stat->is_sorted = false;
+		return (false);
 	}
 	while (i < stat->qty_all - 1)
 	{
 		if (stack_a->elem > stack_a->next->elem)
 		{
-			stat->is_sorted = FALSE;
-			return ;
+			stat->is_sorted = false;
+			return (false);
 		}
 		i++;
 		stack_a = stack_a->next;
 	}
-	stat->is_sorted = TRUE;
-	return ;
+	stat->is_sorted = true;
+	return (true);
 }

@@ -20,10 +20,10 @@ static int	is_no_intmin(int *argnum, int size)
 	while (i < size)
 	{
 		if (argnum[i] != INT_MIN)
-			return (TRUE);
+			return (true);
 		i++;
 	}
-	return (FALSE);
+	return (false);
 }
 
 static int	set_intmin(t_stat *stat, int *argnum, t_stack *stack)
@@ -97,5 +97,5 @@ void	psw_set_stack(t_stat *stat, int *argnum)
 	stat->top_b = NULL;
 	set_elem(stat, argnum, stat->top_a);
 	set_addr(stat, stat->top_a);
-	return (stack);
+	return ;
 }
