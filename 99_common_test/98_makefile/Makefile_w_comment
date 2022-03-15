@@ -1,0 +1,74 @@
+#
+#　Makefile 最低限
+#
+#　=== 変数の設定 === #
+#　暗黙のルールとして使われる既定の変数がいくつか存在する。
+#　それ以外は自分で任意の名前を付けることができる。
+
+NAME=program_name
+#　最終的に作成したいものの名前。変数名は NAME である必要はない。（規定なし）
+#　42 では、後述のルールに $(NAME) を設定することが指定されているので
+#　基本的に変数名は NAME となる。
+
+OBJS=$(NAME).o file_1.o file_2.o
+#　作成物の材料。C プログラムなので .o になっているが、
+#　別の言語では別の種類のファイルになることもある。
+
+#CC=gcc
+CFLAGS=-Wextra -Werror -Wall
+LDFLAGS=$(CFLAGS)
+#　コンパイル関連の暗黙のルール。
+#　CC は指定しなければ、その環境での cc エイリアスのコンパイラコマンドが実行される。
+#　CFLAGS は .c から .o にコンパイルする際に自動で用いられる変数名。
+#　LDFLAGS は .o をリンケージする際に自動で用いられる変数名。
+#　
+#　参照：暗黙的な変数
+#　　https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html
+
+
+#　=== ルールの設定 ===　#
+
+#　一番最初に設定したルールが make のみを実行した場合に実行される。
+#　
+#　最終的に作成したいものと同名の .c ファイルを用意しておくと、
+#　自動で最終成果物までリンケージして生成してくれる。
+#
+#　$(CC) $(LDFLAGS) n.o $(LOADLIBES) $(LDLIBS)
+#　
+#　参照：組み込みルール
+#　　https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html#Catalogue-of-Rules
+
+$(NAME): $(OBJS)
+#　生成物（NAME）の材料として $(OBJS) を指定。
+#　make が、$(OBJS)(.o) を探しに行き、もし存在しない場合は
+#　暗黙のルールにより .c からの作成を試みる。
+#　
+#　$(CC) $(CPPFLAGS) $(CFLAGS) -c
+#　
+#　上記：組み込みルール参照
+
+.PHONY:all clean fclean re
+#　本来は、上のように　【　作りたいもの:　材料　】
+#　のようにルールを指定するが、ファイル名以外のルールを設定し、
+#　そのルール名とファイル名の重複による干渉を避けるために
+#　PHONY Target を指定する。
+#　42 の場合には all, clean, fclean, re が指定されているため、
+#　その 4 つをPHONY Target として指定する。
+#　
+#　参照：PHONY Target
+#　　https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html#index-phony-targets
+
+all: $(NAME)
+#　all と $(NAME) ってどう使い分けるの？？
+
+clean:
+	$(RM) $(OBJS)
+#　$(RM) は既定で "rm -f" が設定されている。（参照：暗黙的な変数）
+#　生成したオブジェクトファイルを削除
+
+fclean: clean
+	$(RM) $(NAME)
+#　clean ルールに加えて、最終生成物を削除
+
+re: fclean all
+#　全部作り直し。
