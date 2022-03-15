@@ -1,5 +1,6 @@
 NAME=program_name
-OBJS=$(NAME).o file_1.o file_2.o
+SRCS=$(NAME).c file_1.c file_2.c
+OBJS=$(SRCS:.c=.o)
 #CC=gcc
 CFLAGS=-Wextra -Werror -Wall
 LDFLAGS=$(CFLAGS)
