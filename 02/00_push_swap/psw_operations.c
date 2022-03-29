@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operatrions.c                                      :+:      :+:    :+:   */
+/*   psw_operations.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamagis <tyamagis@student.42tokyo.>       +#+  +:+       +#+        */
+/*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 10:08:57 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/03/07 20:19:59 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/03/24 13:57:13 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	psw_push_add_to_dst(t_stack *dst, t_stack *src)
 	}
 }
 
-void	psw_push(t_stat *stat, char dir)
+void	psw_push(t_stat *stat, char dir, t_record *record)
 {
 	t_stack	*src;
 
@@ -71,7 +71,7 @@ void	psw_push(t_stat *stat, char dir)
 		psw_push_add_to_dst(stat->top_a, src);
 		stat->top_a = src;
 		stat->qty_a++;
-		psw_save_operation(stat, "pa\n");
+		psw_save_operation(record, "pa\n");
 	}
 	else
 	{
@@ -80,12 +80,13 @@ void	psw_push(t_stat *stat, char dir)
 		psw_push_add_to_dst(stat->top_b, src);
 		stat->top_b = src;
 		stat->qty_a--;
-		psw_save_operation(stat, "pb\n");
+		psw_save_operation(record, "pb\n");
 	}
+	psw_is_sorted(stat);
 	return ;
 }
 
-void	psw_swap(t_stat *stat, char which)
+void	psw_swap(t_stat *stat, char which, t_record *record)
 {
 	int		tmp;
 	t_stack	*tgt;
@@ -96,40 +97,42 @@ void	psw_swap(t_stat *stat, char which)
 	if (which == 'a')
 	{
 		tgt = stat->top_a;
-		psw_save_operation(stat, "sa\n");
+		psw_save_operation(record, "sa\n");
 	}
 	else
 	{
 		tgt = stat->top_b;
-		psw_save_operation(stat, "sb\n");
+		psw_save_operation(record, "sb\n");
 	}
 	tmp = tgt->elem;
 	tgt->elem = tgt->next->elem;
 	tgt->next->elem = tmp;
+	psw_is_sorted(stat);
 	return ;
 }
 
-void	psw_rotate(t_stat *stat, char which, char dir)
+void	psw_rotate(t_stat *stat, char which, char dir, t_record *record)
 {
 	if (which == 'a' && dir == ORDER)
 	{
 		stat->top_a = stat->top_a->next;
-		psw_save_operation(stat, "ra\n");
+		psw_save_operation(record, "ra\n");
 	}
 	else if (which == 'b' && dir == ORDER)
 	{
 		stat->top_b = stat->top_b->next;
-		psw_save_operation(stat, "rb\n");
+		psw_save_operation(record, "rb\n");
 	}
 	else if (which == 'a' && dir != ORDER)
 	{
 		stat->top_a = stat->top_a->prev;
-		psw_save_operation(stat, "rra\n");
+		psw_save_operation(record, "rra\n");
 	}
 	else
 	{
 		stat->top_b = stat->top_b->prev;
-		psw_save_operation(stat, "rrb\n");
+		psw_save_operation(record, "rrb\n");
 	}
+	psw_is_sorted(stat);
 	return ;
 }

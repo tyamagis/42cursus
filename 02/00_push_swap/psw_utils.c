@@ -1,60 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   psw_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamagis <tyamagis@student.42tokyo.>       +#+  +:+       +#+        */
+/*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 10:12:42 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/03/03 21:07:54 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/03/22 00:02:37 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	psw_output_operation(char *s)
+char	*psw_strjoin(char *s1, char *s2)
 {
 	size_t	size;
-
-	if (s == NULL)
-		size = 0;
-	else
-		size = psw_strlen(s);
-	write(1, s, size);
-	return ;
-}
-
-void	psw_save_operation(t_stat *stat, char *s)
-{
-	size_t	size;
-	char	*old_str;
 	char	*new_str;
 	char	*tmp_str;
 
-	/* test */
-	//write(1, s, psw_strlen(s));
-	/* ---- */
-	old_str = stat->op_history;
-	if (old_str == NULL)
+	if (s1 == NULL)
 		size = 0;
 	else
-		size = psw_strlen(old_str);
-	new_str = (char *)malloc(size + psw_strlen(s) + 1);
+		size = psw_strlen(s1);
+	new_str = (char *)malloc(size + psw_strlen(s2) + 1);
 	if (new_str == NULL)
 		psw_exit_with_msg(ERR_MALLOC);
 	tmp_str = new_str;
-	if (old_str != NULL)
+	if (s1 != NULL)
 	{
-		while (*old_str != '\0')
-			*tmp_str++ = *old_str++;
+		while (*s1 != '\0')
+			*tmp_str++ = *s1++;
 	}
-	while (*s != '\0')
-		*tmp_str++ = *s++;
+	while (*s2 != '\0')
+		*tmp_str++ = *s2++;
 	*tmp_str = '\0';
-	free(stat->op_history);
-	stat->op_history = new_str;
-	stat->op_times++;
-	return ;
+	return (new_str);
 }
 
 size_t	psw_strlen(char *s)

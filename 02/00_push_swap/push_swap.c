@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamagis </var/mail/tyamagis>              +#+  +:+       +#+        */
+/*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 01:41:49 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/03/07 16:06:43 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/03/30 02:03:42 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,39 @@
 
 int	main(int ac, char *av[])
 {
-	t_stat	stat;
+	t_stat		stat;
+	t_record	fs_record;
+	t_record	ms_record;
+	//t_record	x_record;
+	//t_record	xx_record;
 
-	if (ac < 2)
-		psw_exit_with_msg(ERR_FEW_ARGS);
+	if (ac == 1)
+		return (0);
 	psw_init_stat(&stat, ac, av);
-	fool_sort(&stat);
-	//psw_sort(&stat);
-	psw_output_operation(stat.op_history);
-	//printf("\n >> [ %d ] ops.\n", stat.op_times);
+	// must copy stat as many of SORTs
+	print_stack(&stat);
+	psw_fool_sort(stat, &fs_record);
+	psw_output_operation(fs_record.history);
+	print_stack(&stat);
+	psw_merge_sort(stat, &ms_record);
+	//x_sort(stat[x], x_record);
+	//xx_sort(stat[xx], xx_record);
+	//xxx_sort(stat[xxx], xxx_record);
+
+	// compare each times,
+	// and output the least sort's operation history.
+
+	/* TEST 
+	printf("fool_sort >> [ %d ] ops.\n", fs_record.times);
+	psw_output_operation(fs_record.history);
+	printf("\n\n_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/\n\n");
+	*/
+	// psw_output_operation(x_record.history);
+	// printf("x_sort >> [ %d ] ops.\n", x_record.times);
+
+	// psw_output_operation(xx_record.history);
+	// printf("xx_sort >> [ %d ] ops.\n", xx_record.times);
+
+	/* ===== */
 	return (0);
 }
