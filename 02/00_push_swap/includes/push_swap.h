@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:35:10 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/03/30 01:28:51 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/04/12 22:17:09 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define SORTED 1
 # define A_SORTED 2
 # define SHIFT_SORTED 3
+
+# define IX_RIGHT 3
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -58,9 +60,20 @@ typedef struct s_stat
 	int		qty_a;
 	t_stack	*top_a;
 	t_stack	*top_b;
+	int		min_times;
 }	t_stat;
 
+/* SORT UTILITIES */
+void	psw_rotate_n(t_stat *stat, t_record *rec, char which, int offset);
+int		psw_get_offset(t_stat *stat, char which, int tgt_idx);
+int		psw_get_min_idx(t_stat *stat, char which);
+int		psw_get_max_idx(t_stat *stat, char which);
+int		psw_get_min_num(t_stat *stat, char which);
+int		psw_get_max_num(t_stat *stat, char which);
+int		psw_is_sorted(t_stat *stat);
+int		search_min_in_a(t_stat *stat);
 
+/* inits */
 void	psw_init_stat(t_stat *stat, int ac, char **av);
 void	psw_set_stack(t_stat *stat, int *argnum);
 
@@ -87,32 +100,9 @@ void	psw_init_record(t_record *record);
 void	psw_fool_sort(t_stat stat, t_record *record);
 void	psw_merge_sort(t_stat stat, t_record *record);
 
-/* SORT UTILITIES */
-int		psw_is_sorted(t_stat *stat);
-int		search_min_in_a(t_stat *stat);
-
-
 /* FOR TEST */
 void	print_stack(t_stat *stat);
 void	print_stat(t_stat *stat);
 void	tests(t_stat *stat);
 
 #endif
-
-/*
- * -> last_a
- * last_a = top_a + (qty_a - 1);
- *
- * -> qty_b
- * qty_b = qty_all - qty_a;
- *
- * -> top_b
- * if (qty_all - qty_a)
- * 		top_b = top_a - 1;
- * 
- * -> last_b
- * last_b = top_b - (qty_b - 1);
- * last_b = (top_a - 1) - (qty_all - qty_a);
- *
- *
- */

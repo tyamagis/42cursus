@@ -1,89 +1,103 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int	permutation_count(int num)
+int	*init_list(int num, int **digit_list)
 {
-	int res;
+	int	i;
+	int	*ret;
 
-	res = 1;
-	while (num-- > 0)
-		res *= num;
-	return (res);
+	*digit_list = (int *)malloc(sizeof(int) * num);
+	ret = (int *)malloc(sizeof(int) * num);
+	if (*digit_list == NULL || ret == NULL)
+		exit(EXIT_FAILURE);
+	while (i < num)
+	{
+		*digit_list[i] = i;
+		i++;
+	}
+	return (ret);
 }
 
-void	set_digitlist(int num, int *digit_list)
+void	print_list(int num, int *digit_list)
 {
 	int i;
-
+	
 	i = 0;
 	while (i < num)
 	{
-		digit_list[i] = i + 1;
+		printf("%d ", digit_list[i]);
+		i++;
+	}
+	printf("\n");
+	return ;
+}
+
+void	copy_list(int num, int *list, int *tmp)
+{
+	int i;
+	
+	i = 0;
+	while (i < num)
+	{
+		tmp[i] = list[i];
 		i++;
 	}
 	return ;
 }
 
-int	is_all_zero(int num, int *digit_list)
+void	print_pmt(int i, int j, int num, int *digit_list, int *output)
 {
-	int i;
+	int tmp_digit[num];
+	int tmp_output[num];
+	int	n;
 
-	i = 0;
-	while (i < num)
+	copy_list(num, digit_list, tmp_digit);
+	copy_list(num, output, tmp_output);
+	tmp_digit[i] = -1;
+	tmp_output[j] = i;
+	if (j == num - 1)
 	{
-		if (digit_list[i] != 0)
-			return (0);
-		i++;
+		print_list(num, tmp_output);
 	}
-	return (1);
-}
-
-void	print_permutatin(int digit, int num, int *digit_list)
-{
-	if (num == 0)
-		printf();
-	else
+	n = 0;
+	while (i - n >= 0)
 	{
-		num--;
-		digit_list[digit] = 0;
-		printf()
-
-}
-
-void	set_permutation(int num, char **output)
-{
-	int	*digit_list;
-
-	digit_list = (int *)malloc(sizeof(int) * num);
-	if (digit_list == NULL)
-		exit(EXIT_FAILURE);
-	set_digitlist(num, digit_list);
-	print_permutatin(0, num, digit_list);
+		if (tmp_digit[i - n] != -1)
+		{
+			print_pmt(i - n, j + 1, num, tmp_digit, tmp_output);
+		}
+		n++;
+	}
+	n = 0;
+	while (i + n != num)
+	{
+		if (tmp_digit[i + n] != -1)
+		{
+			print_pmt(i + n, j + 1, num, tmp_digit, tmp_output);
+		}
+		n++;
+	}
 }
 
 int main(int ac, char **av)
 {
 	int		num;
-	int		output_count;
-	int		char_count;
-	char	**output;
 	int		i;
-	
-	num = atoi(av);
-	output_count = permutation_count(num);
-	output = (char **)malloc(sizeof(char) * output_count + 1);
-	if (output == NULL)
-		exit(EXIT_FAILURE);
-	char_count = num * 2; // include '\0' size.
-	i = 0;
-	while (i < output_count)
+	int		*digit_list;
+	int		*output;
+
+	if (ac == 1 || ac > 2)
 	{
-		output[i] = (char *)malloc(sizeof(char) * char_count);
-		if (output[i] == NULL)
-			exit(EXIT_FAILURE);
+		dprintf(2, "arg err\n");
+		exit(EXIT_FAILURE);
+	}
+	num = atoi(av[1]);
+	output = init_list(num, &digit_list);
+	i = 0;
+	while (i < num)
+	{
+		print_pmt(i, 0, num, digit_list, output);
 		i++;
 	}
-	set_permutation(num, output);
-	print_output(output, output_count);
 	return (0);
 }

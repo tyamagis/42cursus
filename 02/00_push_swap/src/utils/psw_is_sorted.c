@@ -6,46 +6,11 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:06:20 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/03/24 13:19:36 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/04/08 01:34:37 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	search_min_in_a(t_stat *stat)
-{
-	int		min_elem;
-	int		i;
-	int		min_idx;
-	t_stack	*stack_a;
-
-	min_elem = stat->qty_all;
-	i = 0;
-	min_idx = 0;
-	stack_a = stat->top_a;
-	while (i < stat->qty_a)
-	{
-		if (stack_a->elem < min_elem)
-		{
-			min_elem = stack_a->elem;
-			min_idx = i;
-		}
-		stack_a = stack_a->next;
-		i++;
-	}
-	return (min_idx);
-}
-
-int	psw_get_offset(t_stat *stat)
-{
-	int	min_idx;
-
-	min_idx = search_min_in_a(stat);
-	stat->offset = min_idx;
-	if (stat->qty_all - min_idx < min_idx)
-		stat->offset = min_idx - stat->qty_all;
-	return (stat->offset);
-}
 
 int	psw_is_shift_sorted(t_stat *stat)
 {
@@ -66,7 +31,7 @@ int	psw_is_shift_sorted(t_stat *stat)
 		stack = stack->next;
 	}
 	if (stat->is_sorted == SHIFT_SORTED)
-		psw_get_offset(stat);
+		stat->offset = psw_get_min_idx(stat, 'a');
 	return (stat->is_sorted);
 }
 

@@ -33,15 +33,11 @@ void	min_to_top(t_stat *stat, t_record *record)
 	count = min_idx;
 	if (min_idx < 0)
 		count *= -1;
-	// print_stack(stat);
-	// printf(" >> min_idx : %d, count %d\n", min_idx, count);
 	while (count-- > 0)
 	{
 		tmp = stat->top_a->elem - stat->top_a->next->elem;
 		if (tmp > 0 && tmp * 3 <= stat->qty_all)
 			psw_swap(stat, 'a', record);
-		// printf("AFTER SWAP : \n");
-		// print_stack(stat);
 		if (stat->top_a->elem == min)
 			break ;
 		if (psw_is_sorted(stat) == SORTED || psw_is_sorted(stat) == A_SORTED)

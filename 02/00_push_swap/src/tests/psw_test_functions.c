@@ -4,7 +4,7 @@
 void	print_stack(t_stat *stat)
 {
 	printf(">> stat is .....\n");
-	printf("is_sorted = %d, offset = %d\n", stat->is_sorted, stat->offset);
+	printf("is_sorted = %d, offset = %d ", stat->is_sorted, stat->offset);
 	printf("qty_all = %d, qty_a = %d\n", stat->qty_all, stat->qty_a);
 	printf("\nOrder A : ");
 	int i = 0;
