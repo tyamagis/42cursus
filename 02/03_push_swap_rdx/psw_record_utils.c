@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 23:48:57 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/04/21 18:39:44 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/04/21 19:37:52 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	rotate_n(t_stat *stat, char which, int offset)
 	int	qty_all;
 
 	qty_a = stat->qty_a;
-	qty_a = stat->qty_all;
+	qty_all = stat->qty_all;
 	if ((which == 'a' && qty_a == 0) || (which == 'b' && qty_all == qty_a))
 		return ;
 	if (offset > 0)

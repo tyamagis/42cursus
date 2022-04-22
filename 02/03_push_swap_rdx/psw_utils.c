@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 10:12:42 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/04/21 19:11:36 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/04/21 19:38:16 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	free_mems(t_stat *stat)
 {
-	t_stack	*tmp;
-	t_stack	*next;
-
 	if (stat->top_malloced != NULL)
 		free(stat->top_malloced);
 	if (stat->history != NULL)
