@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:35:10 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/04/21 19:10:55 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/04/22 21:15:41 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	merge_sort(t_stat stat);
 void	swap_sort(t_stat *stat);
 void	selection_sort(t_stat *stat);
 void	radix_sort(t_stat *stat);
+void	radix_2_sort(t_stat *stat);
 
 /* FOR TEST */
 void	print_stack(t_stat *stat);

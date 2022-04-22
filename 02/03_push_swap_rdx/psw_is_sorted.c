@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 18:06:20 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/04/21 18:51:41 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/04/22 21:19:37 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ int	is_shift_sorted(t_stat *stat)
 {
 	t_stack	*stack;
 	int		i;
-	int		qty_a;
 	int		qty_b;
 
 	stack = stat->top_a;
-	qty_a = stat->qty_a;
 	qty_b = stat->qty_all - stat->qty_a;
 	i = 0;
 	stat->is_sorted = A_SHIFT_SORTED;

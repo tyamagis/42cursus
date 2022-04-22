@@ -6,7 +6,7 @@
 /*   By: tyamagis <tyamagis@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 01:41:49 by tyamagis          #+#    #+#             */
-/*   Updated: 2022/04/21 18:43:26 by tyamagis         ###   ########.fr       */
+/*   Updated: 2022/04/22 21:15:22 by tyamagis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char *av[])
 	else if (stat.qty_all < 22)
 		selection_sort(&stat);
 	else
-		radix_sort(&stat);
+		radix_2_sort(&stat);
 	output_operation(stat.history);
 	free_mems(&stat);
 	return (0);
